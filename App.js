@@ -1,23 +1,29 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+import { store, sagaMiddleware } from './src/commonLogic/store'
+import rootSaga from './src/commonLogic/rootSaga';
+import React, { Component } from 'react'
+// import routeConfig from './src/routerConfig'
+import Login from './src/components/Login';
+import { Provider } from 'react-redux'
 
-export default class App extends React.Component {
+
+sagaMiddleware.run(rootSaga);
+
+const Main = createStackNavigator({
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      header: null
+    }
+  }
+});
+
+export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Hello world MOTHER FUCKERS!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
+      <Provider store={store}>
+        <Main />
+      </Provider>
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
