@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, Text, KeyboardAvoidingView } from 'react-native';
 import LoginForm from './LoginForm';
+import { connect } from 'react-redux';
+import { StackActions } from 'react-navigation';
 
-export default class Login extends Component {
+
+
+class Login extends Component {
   render () {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
@@ -43,3 +47,9 @@ const styles = StyleSheet.create({
     height: 80
   }
 })
+
+const mapStateToProps = state => ({
+  login: state.login
+})
+
+export default connect(mapStateToProps, null)(Login)

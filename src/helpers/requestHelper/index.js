@@ -1,31 +1,38 @@
 import { AsyncStorage } from 'react-native'
 
 export async function callWebApi (args) {
-  const result = await fetch(args.endpoint, getFetchArgs(args))
+  const token = await _retrieveData()
+  console.log(args)
+  const result = await fetch(`http://docspace.xyz/api${args.endpoint}`, getFetchArgs({token,...args}))
   return result
 }
 
-const getToken = async () => {
+_retrieveData = async () => {
   try {
-    return await AsyncStorage.getItem('token')
-  } catch(error) {
-    console.warn('error with get token',error)
-  }
+    const token = await AsyncStorage.getItem('token');
+    if (token !== null) {
+      return token
+    }
+   } catch (error) {
+     console.log('error with get token',error)
+   }
 }
 
-const token = getToken()
-
 function getFetchArgs (args) {
-  const headers = !args.hasOwnHeaders
-    ? {
+  let headers
+  if (args.login) {
+    headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
     }
-    : {
-      'Authorization': `Bearer ${token}`
-    }
-  console.log('in helper', headers)
+  } else {
+    // const token = await _retrieveData()
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${args.token}`
+      }
+  }
   const { body, method } = args
 
   return {

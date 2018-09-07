@@ -4,6 +4,7 @@ import * as actionTypes from './loginActionTypes'
 import { AsyncStorage } from 'react-native'
 
 
+
 const setToken = async (token) => {
   try {
     await AsyncStorage.setItem('token', token)
@@ -15,6 +16,7 @@ const setToken = async (token) => {
 function * loginFlow (action) {
   try {
     const { email, password } = action.payload
+    console.log(email, password)
     let response = yield call(loginService.login, {email, password})
     console.log('in saga response', response)
     if (!response.success) {

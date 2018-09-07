@@ -1,0 +1,115 @@
+import * as actionTypes from './spacesActionTypes'
+
+// GET ALL
+export const getAllSpacesRequest = () => ({
+  type: actionTypes.GET_ALL_SPACES_REQUEST
+})
+
+export const allSpacesFetchedAndNormalized = (all, byId) => ({
+  type: actionTypes.GET_ALL_SPACES_SUCCESS,
+  payload: {
+    all: all,
+    byId: byId
+  }
+})
+
+export const getAllSpacesError = () => ({
+  type: actionTypes.GET_ALL_SPACES_ERROR
+})
+
+// GET ONE
+export const getSpaceRequest = (id) => ({
+  type: actionTypes.GET_SPACE_REQUEST,
+  payload: id
+})
+
+export const getSpaceSuccess = (space) => ({
+  type: actionTypes.GET_SPACE_SUCCESS,
+  payload: space
+})
+
+export const getSpaceError = () => ({
+  type: actionTypes.GET_SPACE_ERROR
+})
+
+
+export const addNewInfoSpaceSuccess = (updatedSpace) => ({
+  type: actionTypes.ADD_NEW_INFO_SPACE_SUCCESS,
+  payload: updatedSpace
+})
+
+// UPDATE
+export const updateSpaceRequest = (newSpace) => {
+  return {
+    type: actionTypes.UPDATE_SPACE_REQUEST,
+    payload: newSpace
+  }
+}
+
+export const updateSpaceSuccess = (updatedSpace) => ({
+  type: actionTypes.UPDATE_SPACE_SUCCESS,
+  payload: updatedSpace
+})
+
+export const updateSpaceError = () => ({
+  type: actionTypes.UPDATE_SPACE_ERROR
+})
+
+// DELETE
+export const deleteSpaceRequest = (id) => ({
+  type: actionTypes.DELETE_SPACE_REQUEST,
+  payload: { id }
+})
+
+export const deleteSpaceSuccess = (deletedId) => ({
+  type: actionTypes.DELETE_SPACE_SUCCESS,
+  payload: { _id: deletedId }
+})
+
+export const deleteSpaceError = () => ({
+  type: actionTypes.DELETE_SPACE_ERROR
+})
+
+// CATEGORY ACTIONS
+export const createCategoryRequest = ({spaceId, categoryName}) => ({
+  type: actionTypes.CREATE_CATEGORY_REQUEST,
+  payload: {spaceId, categoryName}
+})
+
+export const createCategorySuccess = (space) => ({
+  type: actionTypes.CREATE_CATEGORY_SUCCESS,
+  payload: space
+})
+
+export const createCategoryError = () => ({
+  type: actionTypes.CREATE_CATEGORY_ERROR
+})
+
+export const deleteCategoryRequest = (categoryId, spaceId) => ({
+  type: actionTypes.DELETE_CATEGORY_REQUEST,
+  payload: { spaceId, categoryId }
+})
+
+export const deleteCategorySuccess = (updatedSpace) => ({
+  type: actionTypes.DELETE_CATEGORY_SUCCESS,
+  payload: updatedSpace
+})
+
+export const deleteCategoryError = () => ({
+  type: actionTypes.DELETE_CATEGORY_ERROR
+})
+
+export const addPageToSpace = (spaceId, page) => ({
+  type: actionTypes.ADD_PAGE_TO_SPACE,
+  payload: {spaceId, page}
+})
+
+export const removePageFromSpace = (spaceId, pageId) => ({
+  type: actionTypes.REMOVE_PAGE_FROM_SPACE,
+  payload: {spaceId, pageId}
+})
+
+export const refreshPagesInSpace = (spaceId, pages) => ({
+  type: actionTypes.REFRESH_PAGES_IN_SPACE,
+  payload: {spaceId, pages}
+})
