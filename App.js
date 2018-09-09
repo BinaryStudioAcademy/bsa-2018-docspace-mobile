@@ -1,23 +1,17 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import { Provider } from 'react-redux';
+import {store} from './src/commonLogic/store';
+import Docspace from './src/components';
+import {sagaMiddleware} from './src/commonLogic/store'
+import rootSaga from './src/commonLogic/rootSaga';
 
-export default class App extends React.Component {
+sagaMiddleware.run(rootSaga);
+export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Hello world MOTHER FUCKERS!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <Provider store={store}>
+        <Docspace />
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
