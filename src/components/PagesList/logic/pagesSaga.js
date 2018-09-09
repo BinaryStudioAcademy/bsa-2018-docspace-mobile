@@ -26,7 +26,6 @@ function * getPage (action) {
     //   return
     // }
     const page = yield PageService.getPage(action.payload)
-    yield commentsActions.allCommentsFetched(page.comments)
     yield put(actions.getPageByIdSuccess(page))
   } catch (e) {
     yield put(actions.getPageByIdError())

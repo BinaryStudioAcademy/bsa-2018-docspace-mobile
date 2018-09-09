@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Text, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Image, Text, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
 import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
-import { StackActions } from 'react-navigation';
 
 
 
 class Login extends Component {
   render () {
-    return (
-      <KeyboardAvoidingView behavior='padding' style={styles.container}>
+    return this.props.isFetching
+    ? <View style={styles.fetching}>
+       <ActivityIndicator size='large' color='#344f7c' />
+      </View>
+    : <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <View style={styles.logoContainer}>
           <Image
             style={styles.logo}
@@ -17,18 +19,17 @@ class Login extends Component {
           />
           <Text style={styles.appName}>DOCSPACE</Text>
         </View>
-        <View style={styles.formContainer}>
+        <View>
           <LoginForm/>
         </View>
       </KeyboardAvoidingView>
-    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    backgroundColor: '#0044a9'
+    backgroundColor: '#344f7c'
   },
   logoContainer: {
     alignItems: 'center',
@@ -45,11 +46,18 @@ const styles = StyleSheet.create({
     marginTop: 10,
     width: 80,
     height: 80
+  },
+  fetching: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 })
 
 const mapStateToProps = state => ({
-  login: state.login
+  login: state.login,
+  isFetching: state.login.requesting
 })
 
-export default connect(mapStateToProps, null)(Login)
+export default connect(mapStateToProps)(Login)

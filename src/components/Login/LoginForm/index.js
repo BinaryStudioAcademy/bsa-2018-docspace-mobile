@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, TouchableOpacity, Text, StatusBar, Button } from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import loginRequest from '../logic/loginActions'
+import { loginRequest } from '../logic/loginActions'
 
 class LoginForm extends Component {
   state = {

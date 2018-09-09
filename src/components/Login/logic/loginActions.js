@@ -1,10 +1,11 @@
 import * as actionTypes from './loginActionTypes'
 
-const loginRequest = (email, password) => {
-  return ({
+export const loginRequest = (email, password) => ({
     type: actionTypes.LOGIN_REQUESTING,
     payload: {email, password}
   })
-}
 
-export default loginRequest
+export const verificationRequest = () => ({
+  type: actionTypes.VERIFICATION
+})
+

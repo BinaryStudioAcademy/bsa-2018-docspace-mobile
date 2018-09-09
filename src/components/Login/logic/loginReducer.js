@@ -27,6 +27,25 @@ export const loginReducer = (state = initialState, action) => {
         successful: true,
         user: action.response.user
       }
+    case actionTypes.VERIFICATION:
+      return {
+        requesting: true,
+        successful: false,
+        errors: [],
+        user: null
+      }
+    case actionTypes.VERIFICATION_SUCCESS:
+      return {
+        requesting: false,
+        user: action.response.message,
+        successful: action.response.isLoggedIn
+      }
+    case actionTypes.VERIFICATION_ERROR:
+      return {
+        requesting: false,
+        successful: false,
+        user: null
+      }
 
     case actionTypes.LOGIN_ERROR:
       return {

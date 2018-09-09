@@ -50,6 +50,7 @@ function isFetching (state = initialState.isFetching, action) {
     case actionTypes.GET_ALL_SPACES_ERROR:
     case actionTypes.GET_SPACE_SUCCESS:
     case actionTypes.GET_SPACE_ERROR:
+    case actionTypes.ADD_NEW_INFO_SPACE_SUCCESS:
       return false
     default:
       return state

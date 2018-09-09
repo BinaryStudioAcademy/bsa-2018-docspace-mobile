@@ -1,7 +1,7 @@
 import { callWebApi } from '../helpers/requestHelper'
 class PageService {
   getPages = () => {
-    const args = { endpoint: 'http://docspace.xyz/api/pages', method: 'GET' }
+    const args = { endpoint: '/pages', method: 'GET' }
     const apiResult = callWebApi(args)
       .then(res => res.json())
       .catch(err => console.log(`Error: ${err}`))
@@ -9,7 +9,7 @@ class PageService {
   }
 
   getPage = (obj) => {
-    const args = { endpoint: `http://docspace.xyz/api/pages/${obj.id}`, method: 'POST', body: JSON.stringify({version: obj.version}) }
+    const args = { endpoint: `/pages/${obj.id}`, method: 'POST' }
     const apiResult = callWebApi(args)
       .then(res => res.json())
       .catch(err => console.log(`Error: ${err}`))

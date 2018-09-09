@@ -1,43 +1,31 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getAllSpacesRequest } from './logic/spacesActions';
-import { allSpaces } from './logic/spacesReducer';
-import { List, ListItem } from 'react-native-elements'
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { ListItem } from 'react-native-elements'
+import { Actions } from 'react-native-router-flux';
+
 
 class SpacesList extends Component {
-  componentDidMount () {
-    this.props.getAllSpaces()
-  }
   render () {
     return (
-      <List containerStyle={{marginBottom: 20}}>
-        {this.props.allSpaces.map(space => (
+      <ScrollView styles={styles.container}>
+        {this.props.spaces.map(space => (
            <ListItem
               key={space._id}
               title={space.name}
-              // onPress={Actions.space}
+              onPress={() => Actions.space({ spaceId: space._id})}
+              leftIcon={{type: 'font-awesome', name: space.spaceSettings.icon, color: space.spaceSettings.color}}
            />
           ))
         }
-      </List>
+      </ScrollView>
     )
   }
 }
 
 const styles = StyleSheet.create({
-
+  container: {
+    marginBottom: 20
+  }
 })
 
-const mapStateToProps = state => ({
-  allSpaces: allSpaces(state)
-})
-
-const mapDispatchToProps = dispatch => ({
-  getAllSpaces: bindActionCreators(getAllSpacesRequest, dispatch)
-})
-
-
-export default connect(mapStateToProps,mapDispatchToProps)(SpacesList)
-// export default SpacesList
+export default SpacesList
