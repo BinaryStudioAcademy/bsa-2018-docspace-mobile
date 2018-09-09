@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native'
 
 export async function callWebApi (args) {
   const token = await _retrieveData()
-  console.log(args)
+  console.log('GET TOKEN:', token)
   const result = await fetch(`http://docspace.xyz/api${args.endpoint}`, getFetchArgs({token,...args}))
   return result
 }
@@ -26,11 +26,10 @@ function getFetchArgs (args) {
       'Content-Type': 'application/json',
     }
   } else {
-    // const token = await _retrieveData()
     headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${args.token}`
+        // 'Authorization': `Bearer ${args.token}`
       }
   }
   const { body, method } = args

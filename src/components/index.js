@@ -77,13 +77,6 @@ class Docspace extends Component {
             renderRightButton={this.renderRightButton}
             backButtonTintColor='#fff'
           />
-          {/* <Scene
-            key="profile"
-            title='Profile'
-            component={Profile}
-            renderRightButton={this.renderRightButton}
-            backButtonTintColor='#fff'
-          /> */}
         </Stack>
       </Router>
     );
@@ -106,7 +99,6 @@ const styles = StyleSheet.create({
   },
   leftButton: {
     color: '#fff',
-    backgroundColor: 'green'
   }
 });
 
