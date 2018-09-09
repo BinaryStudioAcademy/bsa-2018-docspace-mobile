@@ -29,7 +29,7 @@ function getFetchArgs (args) {
     headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        // 'Authorization': `Bearer ${args.token}`
+        'Authorization': `Bearer ${args.token}`
       }
   }
   const { body, method } = args
