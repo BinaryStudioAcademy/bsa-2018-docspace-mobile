@@ -52,7 +52,7 @@ class LoginForm extends Component {
         <TouchableOpacity >
           <Button
           title='LOGIN'
-          color='#841584'
+          color='#5BC0EB'
           onPress={this.handleLogin}
           disabled={!this.isLoginAllowed()}
           />
@@ -69,7 +69,7 @@ const mapDispatchToProps = dispatch => ({
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    padding: 20,
   },
   input: {
     height: 40,
