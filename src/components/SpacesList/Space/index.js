@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, ActivityIndicator ,Image} from 'react-native';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import PagesList from '../../PagesList'
 import { getSpaceRequest } from '../../SpacesList/logic/spacesActions'
+import { Icon } from "react-native-elements";
+
 
 
 class Space extends Component {
@@ -11,16 +13,16 @@ class Space extends Component {
     this.props.getSpaceById(this.props.spaceId)
   }
   render () {
-    const {name, pages} = this.props.space
+    const {name, pages, spaceSettings} = this.props.space
     const {isFetching} = this.props
-    console.log('in space', name, 'pages---', pages, 'fetching', isFetching)
     return isFetching
       ? <View style={styles.fetching}>
           <ActivityIndicator size='large' color='#0044a9' />
         </View>
       :  (<View >
-            <View>
-              <Text>{name}</Text>
+            <View style={styles.spaceInfo}>
+              <Icon iconStyle={styles.icon} name={`${spaceSettings.icon}`} type='font-awesome' color={`${spaceSettings.color}`}/>
+              <Text style={styles.spaceText}>{name}</Text>
             </View>
             <View>
               <PagesList pages={pages}/>
@@ -36,6 +38,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  spaceInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  spaceText: {
+    fontSize: 16
+  },
+  icon: {
+    marginRight: 5
   }
 })
 

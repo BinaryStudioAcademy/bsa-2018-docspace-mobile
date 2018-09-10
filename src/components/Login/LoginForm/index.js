@@ -15,9 +15,7 @@ class LoginForm extends Component {
   }
 
   handleLogin = () => {
-    console.log('LOGIN PRESSED')
     const {email, password} = this.state
-    console.log(email, password)
     this.props.login(email, password)
   }
 
