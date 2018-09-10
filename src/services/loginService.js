@@ -1,4 +1,6 @@
 import { callWebApi } from '../helpers/requestHelper'
+import { AsyncStorage } from 'react-native'
+
 
 class LoginService {
   login (data) {
@@ -15,8 +17,8 @@ class LoginService {
       .catch(err => console.log(`Error: ${err}`))
     return apiResult
   }
-  logout () {
-    localStorage.removeItem('token')
+  async logout () {
+    await AsyncStorage.removeItem('token')
   }
 }
 

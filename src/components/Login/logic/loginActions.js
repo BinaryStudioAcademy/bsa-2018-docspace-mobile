@@ -9,3 +9,6 @@ export const verificationRequest = () => ({
   type: actionTypes.VERIFICATION
 })
 
+export const logoutRequest = () => ({
+  type: actionTypes.LOGOUT
+})

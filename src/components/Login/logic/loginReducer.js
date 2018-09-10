@@ -2,7 +2,7 @@ import * as actionTypes from './loginActionTypes'
 
 const initialState = {
   requesting: false,
-  successful: false,
+  isLoggedIn: false,
   messages: [],
   errors: [],
   user: null
@@ -13,7 +13,7 @@ export const loginReducer = (state = initialState, action) => {
     case actionTypes.LOGIN_REQUESTING:
       return {
         requesting: true,
-        successful: false,
+        isLoggedIn: false,
         messages: [{ body: 'Logging in...', time: new Date() }],
         errors: [],
         user: null
@@ -24,13 +24,13 @@ export const loginReducer = (state = initialState, action) => {
         errors: [],
         messages: [action.response.message],
         requesting: false,
-        successful: true,
+        isLoggedIn: true,
         user: action.response.user
       }
     case actionTypes.VERIFICATION:
       return {
         requesting: true,
-        successful: false,
+        isLoggedIn: false,
         errors: [],
         user: null
       }
@@ -38,12 +38,12 @@ export const loginReducer = (state = initialState, action) => {
       return {
         requesting: false,
         user: action.response.message,
-        successful: action.response.isLoggedIn
+        isLoggedIn: action.response.isLoggedIn
       }
     case actionTypes.VERIFICATION_ERROR:
       return {
         requesting: false,
-        successful: false,
+        isLoggedIn: false,
         user: null
       }
 
@@ -55,10 +55,23 @@ export const loginReducer = (state = initialState, action) => {
         }]),
         messages: [],
         requesting: false,
-        successful: false,
+        isLoggedIn: false,
         user: null
       }
-
+    case actionTypes.LOGOUT:
+      return {
+        requesting: true,
+      }
+    case actionTypes.LOGOUT_SUCCESS:
+      return {
+        requesting: false,
+        isLoggedIn: false
+      }
+    case actionTypes.LOGOUT_ERROR:
+      return {
+        requesting: false,
+        isLoggedIn: true
+      }
     default:
       return state
   }
