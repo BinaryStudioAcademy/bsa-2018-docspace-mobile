@@ -18,7 +18,7 @@ class Page extends Component {
         </View>
       : <View>
           <View>
-            <Text>{page.title}</Text>
+            <Text style={styles.title}>{page.title}</Text>
           </View>
           <ScrollView style={styles.content}>
             <HTMLView value={page.content} />
@@ -39,7 +39,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   content: {
-    margin: 5
+    margin: 10
+  },
+  title: {
+    fontSize: 16,
+    textAlign: 'center'
   }
 })
 

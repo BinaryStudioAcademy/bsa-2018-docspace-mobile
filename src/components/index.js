@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, StatusBar, ActivityIndicator, View} from 'react-native';
 import { connect } from 'react-redux';
-import { Router, Scene, Stack, Actions } from 'react-native-router-flux';
+import { Router, Scene, Stack, Actions, Modal } from 'react-native-router-flux';
 import Login from './Login';
 import Home from './Home';
 import SpacesList from './SpacesList'
@@ -11,9 +11,6 @@ import Page from './PagesList/Page'
 import { bindActionCreators } from 'redux'
 import { verificationRequest } from './Login/logic/loginActions'
 import { Icon } from 'react-native-elements'
-
-
-
 
 class Docspace extends Component {
   componentDidMount() {

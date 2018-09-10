@@ -8,7 +8,6 @@ import { spacesArray } from './spacesNormalizerSchema'
 function * getSpaces (action) {
   try {
     const spaces = yield SpaceService.getSpaces()
-    console.log('spaces from server', spaces)
     const normalized = normalize(spaces, spacesArray)
     const all = normalized.result
     const byId = normalized.entities.byId || {}

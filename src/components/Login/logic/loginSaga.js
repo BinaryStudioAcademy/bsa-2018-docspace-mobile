@@ -9,20 +9,17 @@ const setToken = async (token) => {
   try {
     await AsyncStorage.setItem('token', token)
   } catch (err) {
-    console.want('error to set token', err)
+    console.warn('error to set token', err)
   }
 }
 
 function * loginFlow (action) {
   try {
     const { email, password } = action.payload
-    console.log(email, password)
     let response = yield call(loginService.login, {email, password})
-    console.log('in saga response', response)
     if (!response.success) {
       throw new Error(response.message)
     }
-    console.log('in saga')
     yield setToken(response.token)
     yield put({ type: actionTypes.LOGIN_SUCCESS, response })
   } catch (error) {
@@ -33,7 +30,6 @@ function * loginFlow (action) {
 function * verificationFlow () {
   try {
     let response = yield call(loginService.verification)
-    console.log(response)
     if (!response.isLoggedIn) {
       throw new Error(response.message)
     }

@@ -2,7 +2,6 @@ import { AsyncStorage } from 'react-native'
 
 export async function callWebApi (args) {
   const token = await _retrieveData()
-  console.log('GET TOKEN:', token)
   const result = await fetch(`http://docspace.xyz/api${args.endpoint}`, getFetchArgs({token,...args}))
   return result
 }
