@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text,ScrollView, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text,ScrollView, ActivityIndicator, Dimensions } from 'react-native';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { getPageByIdRequest } from '../../PagesList/logic/pagesActions'
@@ -20,7 +20,7 @@ class Page extends Component {
           <View>
             <Text>{page.title}</Text>
           </View>
-          <ScrollView>
+          <ScrollView style={styles.content}>
             <HTMLView value={page.content} />
           </ScrollView>
         </View>
@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  content: {
+    margin: 5
   }
 })
 

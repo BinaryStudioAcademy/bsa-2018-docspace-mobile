@@ -32,7 +32,6 @@ function * loginFlow (action) {
 
 function * verificationFlow () {
   try {
-    console.log('call')
     let response = yield call(loginService.verification)
     console.log(response)
     if (!response.isLoggedIn) {
@@ -42,6 +41,15 @@ function * verificationFlow () {
   } catch (error) {
     yield put({ type: actionTypes.VERIFICATION_ERROR, error })
   }
+}
+
+export function * logoutFlow () {
+    try {
+      yield call(loginService.logout)
+      yield put({ type: actionTypes.LOGOUT_SUCCESS })
+    } catch (err) {
+      console.log(err)
+    }
 }
 
 export function * loginWatcher () {
@@ -55,3 +63,6 @@ export function * verficationWatcher () {
   yield takeEvery(actionTypes.VERIFICATION, verificationFlow)
 }
 
+export function * logoutWatcher () {
+  yield takeEvery(actionTypes.LOGOUT, logoutFlow)
+}

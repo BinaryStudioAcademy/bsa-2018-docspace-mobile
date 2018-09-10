@@ -6,13 +6,10 @@ import { Router, Scene, Stack, Actions } from 'react-native-router-flux';
 import Login from './Login';
 import Home from './Home';
 import SpacesList from './SpacesList'
-import Profile from './Profile'
 import Space from './SpacesList/Space'
-import PagesList from './PagesList'
 import Page from './PagesList/Page'
 import { bindActionCreators } from 'redux'
 import { verificationRequest } from './Login/logic/loginActions'
-import logo from '../images/logoAnimalwhite.png'
 import { Icon } from 'react-native-elements'
 
 
@@ -61,21 +58,21 @@ class Docspace extends Component {
             title='Spaces'
             renderRightButton={this.renderRightButton}
             component={SpacesList}
-            backButtonTintColor='#fff'
+            tintColor='#fff'
           />
           <Scene
             key="space"
             title='Pages'
             component={Space}
             renderRightButton={this.renderRightButton}
-            backButtonTintColor='#fff'
+            tintColor='#fff'
           />
           <Scene
             key="page"
             title='Page'
             component={Page}
             renderRightButton={this.renderRightButton}
-            backButtonTintColor='#fff'
+            tintColor='#fff'
           />
         </Stack>
       </Router>
@@ -104,7 +101,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = function(state) {
   return {
-    isAuthenticated: state.login.successful,
+    isAuthenticated: state.login.isLoggedIn,
     isFetching: state.login.requesting
   }
 };
