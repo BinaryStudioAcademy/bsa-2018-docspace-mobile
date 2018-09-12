@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: "white",
     marginBottom: 8,
+    marginTop: 8
   },
   name: {
     fontSize: 24,
@@ -91,15 +92,16 @@ const styles = StyleSheet.create({
   boxTwo: {
     flex: 1.5,
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "flex-start",
     backgroundColor: "#fff",
+    padding: 30
   },
   item: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    margin: 5,
+    padding: 15,
   },
   userItem: {
     flex: 1,
