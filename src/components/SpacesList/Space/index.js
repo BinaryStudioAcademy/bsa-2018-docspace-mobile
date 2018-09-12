@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   spaceInfo: {
+    margin: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
