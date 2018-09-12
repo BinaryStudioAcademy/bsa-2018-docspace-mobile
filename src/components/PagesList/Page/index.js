@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text,ScrollView, ActivityIndicator, Dimensions } from 'react-native';
+import { StyleSheet, View, Text,ScrollView, ActivityIndicator, Image } from 'react-native';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { getPageByIdRequest } from '../../PagesList/logic/pagesActions'
@@ -10,6 +10,8 @@ class Page extends Component {
   componentDidMount () {
     this.props.getPageById(this.props.pageId)
   }
+
+
   render () {
     const {page, isFetching} = this.props
     return isFetching
@@ -21,7 +23,15 @@ class Page extends Component {
             <Text style={styles.title}>{page.title}</Text>
           </View>
           <ScrollView style={styles.content}>
-            <HTMLView value={page.content} />
+            <HTMLView
+             value={page.content}
+             stylesheet={stylesHTML}
+             renderNode={(node) => {
+              if (node.name === 'br' || node.name === 'iframe') {
+                return null;
+              }
+             }}
+              />
           </ScrollView>
         </View>
   }
@@ -43,9 +53,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    textAlign: 'center'
+    textAlign: 'center',
+    margin: 10
   }
 })
+const stylesHTML = StyleSheet.create({
+  img: {
+    flex: 1
+  },
+});
 
 const mapStateToPops = (state, props) => ({
   page: state.pages.byId[props.pageId],

@@ -8,6 +8,7 @@ import Home from './Home';
 import SpacesList from './SpacesList'
 import Space from './SpacesList/Space'
 import Page from './PagesList/Page'
+import Profile from './Profile'
 import { bindActionCreators } from 'redux'
 import { verificationRequest } from './Login/logic/loginActions'
 import { Icon } from 'react-native-elements'
@@ -25,6 +26,7 @@ class Docspace extends Component {
         name='home'
         color='#fff'
         iconStyle={{ marginRight: 5}}
+        underlayColor='#344f7c'
       />)
   }
 
@@ -68,6 +70,13 @@ class Docspace extends Component {
             key="page"
             title='Page'
             component={Page}
+            renderRightButton={this.renderRightButton}
+            tintColor='#fff'
+          />
+          <Scene
+            key="profile"
+            title='Profile'
+            component={Profile}
             renderRightButton={this.renderRightButton}
             tintColor='#fff'
           />
