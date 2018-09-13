@@ -87,7 +87,7 @@ class Menu extends Component {
             onPress={() => Actions.profile({user}) }
           >
             <View style={styles.iconContent}>
-              <Icon iconStyle={styles.icon} type='font-awesome' name="user" />
+              <Icon iconStyle={styles.icon} name="person" />
             </View>
             <View style={styles.infoContent}>
               <Text style={styles.info}>Profile</Text>
@@ -218,8 +218,8 @@ const styles = StyleSheet.create({
   },
   item: {
     justifyContent: "center",
-    alignItems: "center",
-    margin: 5
+    alignItems: "flex-start",
+    margin: 10
   },
   userItem: {
     flex: 1,
